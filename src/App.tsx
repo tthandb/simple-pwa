@@ -1,5 +1,4 @@
-import { Route } from 'react-router-dom';
-import { Switch } from '@chakra-ui/react';
+import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
@@ -8,7 +7,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Dashboard />
         </Route>
         <Route path="/login">

@@ -51,5 +51,10 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'no-unused-vars': 0,
+    'react/prop-types': 0,
+    'react/no-children-prop': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'no-console': 0,
   },
 };
