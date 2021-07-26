@@ -1,2 +1,4 @@
 *.css
 *.svg
+service-worker.ts
+serviceWorkerRegistration.ts

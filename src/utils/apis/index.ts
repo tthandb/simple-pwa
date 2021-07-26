@@ -11,4 +11,7 @@ const authorizationProvider = (token: string | null) => {
   )
 }
 
-export default authorizationProvider
+export { authorizationProvider }
+export * from './customers'
+export * from './auth'
+export * from './logger'

@@ -28,3 +28,10 @@ export interface Token {
   accessToken: string | null,
   expiredTime: string | null
 }
+
+interface Logger {
+  timestamp: string,
+  level: 'info' | 'debug' | 'trace' | 'warn' | 'error',
+  title: string,
+  message: string | null
+}

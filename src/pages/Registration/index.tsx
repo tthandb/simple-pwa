@@ -1,5 +1,5 @@
 import {
-  ChangeEvent, SyntheticEvent, useState,
+  ChangeEvent, SyntheticEvent, useEffect, useState,
 } from 'react'
 import {
   Flex,
@@ -15,7 +15,7 @@ import {
   Avatar,
   FormControl,
   Radio, RadioGroup,
-  CircularProgress, useToast,
+  CircularProgress, useToast, HStack,
 } from '@chakra-ui/react'
 import { Link as Link2, useHistory } from 'react-router-dom'
 import { FaUserAlt, FaLock } from 'react-icons/fa'
@@ -24,9 +24,10 @@ import { useMutation } from 'react-query'
 import { useSetRecoilState } from 'recoil'
 import { validateEmail, validateName } from '../../utils/validation'
 import { UserInformation } from '../../utils/types'
-import { postRegister } from '../../utils/api'
+import { postRegister } from '../../utils/apis'
 import NotificationMessage from '../../components/NotificationMessage'
 import userState from '../../recoil/atoms/user'
+import { sendErrorLog, sendLog } from '../../utils/logger'
 
 const CFaUserAlt = chakra(FaUserAlt)
 const CFaLock = chakra(FaLock)
@@ -50,6 +51,7 @@ const Registration = () => {
     (data: UserInformation) => postRegister(data),
     {
       onSuccess: (data, variables) => {
+        sendLog('info', 'Registration success').then()
         const { accessToken } = (data as any)
         localStorage.setItem('access_token', accessToken)
         localStorage.setItem('last_login', Date.now().toString())
@@ -65,6 +67,7 @@ const Registration = () => {
         history.push('/home')
       },
       onError: (err: any) => {
+        sendErrorLog(err)
         setError(err.response.data)
         setIsLoading(false)
       },
@@ -93,6 +96,7 @@ const Registration = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
+    sendLog('info', 'Click button "Submit"').then((r) => true)
     if (validateForm()) {
       setIsLoading(true)
       const user = {
@@ -106,6 +110,10 @@ const Registration = () => {
       mutation.mutate(user)
     }
   }
+
+  useEffect(() => {
+    sendLog('info', 'Registration page mount').then((r) => true)
+  }, [])
 
   return (
     <Flex
@@ -127,11 +135,11 @@ const Registration = () => {
         <Box minW={{ base: '90%', md: '468px' }}>
           <form onSubmit={handleSubmit}>
             <Stack
-              spacing={4}
+              spacing="1rem"
               p="1rem"
               backgroundColor="whiteAlpha.900"
               boxShadow="md"
-              justify="space-between"
+              alignItems="center"
             >
               <FormControl isRequired>
                 <InputGroup>
@@ -179,17 +187,18 @@ const Registration = () => {
                 </InputGroup>
               </FormControl>
               <RadioGroup
+                w="100%"
                 defaultValue="male"
                 onChange={(value: string) => setGender(value === 'male')}
               >
-                <Stack spacing={5} direction="row">
+                <HStack spacing="1rem" justifyContent="space-around">
                   <Radio colorScheme="green" size="lg" value="male">
                     Male
                   </Radio>
                   <Radio colorScheme="green" size="lg" value="female">
                     Female
                   </Radio>
-                </Stack>
+                </HStack>
               </RadioGroup>
               <FormControl isRequired>
                 <InputGroup>
@@ -233,7 +242,7 @@ const Registration = () => {
                     type="password"
                     placeholder="Confirm password"
                     onChange={
-                      // eslint-disable-next-line max-len
+                          // eslint-disable-next-line max-len
                           (e: ChangeEvent<HTMLInputElement>) => setRetypePassword(e.currentTarget.value)
                         }
                   />

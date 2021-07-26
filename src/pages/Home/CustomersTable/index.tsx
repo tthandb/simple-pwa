@@ -19,8 +19,9 @@ import { useState, useRef } from 'react'
 import { useMutation } from 'react-query'
 import { Customer } from '../../../utils/types'
 import { formState } from '../../../recoil/atoms'
-import { deleteCustomer } from '../../../utils/api'
+import { deleteCustomer } from '../../../utils/apis'
 import Row from './Row'
+import { sendLog } from '../../../utils/logger'
 
 interface IProps {
   data: Customer[] | undefined,
@@ -39,6 +40,7 @@ const CustomersTable = (props: IProps) => {
   const mutation = useMutation((id: number) => deleteCustomer(id), {
     onSuccess:
         (_, variables) => {
+          sendLog('info', `Deleted customer #${349} successfully`).then()
           backUpCurrentPage()
           refetch()
           toast({
@@ -51,19 +53,21 @@ const CustomersTable = (props: IProps) => {
           onClose()
         },
   })
-  const handleEdit = (id: number) => {
-    const customer = data?.find((e) => e.id === id)
-    if (customer) {
-      setFormState({
-        isEdit: true,
-        data: customer,
-      })
-      history.push(`/home/${customer.id}`)
+  const handleEdit = (id: number | undefined) => {
+    if (id !== undefined) {
+      const customer = data?.find((e) => e.id === id)
+      if (customer) {
+        setFormState({
+          isEdit: true,
+          data: customer,
+        })
+        history.push(`/home/${customer.id}`)
+      }
     }
   }
 
-  const getCustomerId = (id: number) => {
-    setDeletedId(id)
+  const getCustomerId = (id: number | undefined) => {
+    if (id) setDeletedId(id)
   }
   const handleDelete = () => {
     if (deletedId != null) {

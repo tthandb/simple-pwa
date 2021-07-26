@@ -25,12 +25,11 @@ import { Link as Link2, useHistory } from 'react-router-dom'
 import { useMutation, useQuery } from 'react-query'
 import { useSetRecoilState } from 'recoil'
 import NotificationMessage from '../../components/NotificationMessage'
-import { postLogin } from '../../utils/api'
+import { postLogin, authorizationProvider } from '../../utils/apis'
 import { User } from '../../utils/types'
 import { validateEmail } from '../../utils/validation'
 import { tokenState, userState } from '../../recoil/atoms'
-import authorizationProvider from '../../utils/authProvider'
-import { DEBOUNCE_TIMEOUT } from '../../utils/constants'
+import { sendErrorLog, sendLog } from '../../utils/logger'
 
 const CFaUserAlt = chakra(FaUserAlt)
 const CFaLock = chakra(FaLock)
@@ -43,7 +42,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [error, setError] = useState<string | null>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isRemembered, setIsRemembered] = useState<boolean>(false)
+  const [isRemembered, setIsRemembered] = useState<boolean>(true)
   const history = useHistory()
   const toast = useToast()
   const setUserGlobal = useSetRecoilState(userState)
@@ -52,6 +51,7 @@ const Login = () => {
     (data: User) => postLogin(data),
     {
       onSuccess: (data, variables) => {
+        sendLog('info', 'Sign in success').then()
         const { accessToken } = (data as any)
         const expiredTime = Date.now().toString()
         authorizationProvider(accessToken)
@@ -71,7 +71,8 @@ const Login = () => {
         setError(null)
         history.push('/home')
       },
-      onError: () => {
+      onError: (err: any) => {
+        sendErrorLog(err)
         setError('The provided username or password is not correct. Please try again')
         setIsLoading(false)
       },
@@ -80,13 +81,23 @@ const Login = () => {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
+    sendLog('info', 'Click button "Sign in"').then((r) => true)
     setIsLoading(true)
     mutation.mutate(user)
   }
 
-  const handleShowClick = () => setShowPassword(!showPassword)
+  const handleShowClick = () => {
+    if (!showPassword) {
+      sendLog('info', 'Click button "show password" to show password').then((r) => true)
+    } else {
+      sendLog('info', 'Click button "show password" to hide password').then((r) => true)
+    }
+
+    setShowPassword(!showPassword)
+  }
 
   useEffect(() => {
+    sendLog('info', 'Login page mount').then((r) => true)
     setToken({
       accessToken: localStorage.getItem('access_token'),
       expiredTime: localStorage.getItem('last_login'),
@@ -208,7 +219,13 @@ const Login = () => {
       <Box>
         Do not have an account yet?
         {' '}
-        <Link as={Link2} color="teal.500" to="/registration">
+        <Link
+          as={Link2}
+          color="teal.500"
+          to="/registration"
+          onClick={() => sendLog('info', 'Click button "Sign up" when not have account')
+            .then((r) => true)}
+        >
           Sign Up
         </Link>
       </Box>

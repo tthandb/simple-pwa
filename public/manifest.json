@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Customer mgt",
+  "name": "Customer management",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,5 +1,5 @@
 import {
-  Alert, AlertDescription, AlertIcon, Box, Text,
+  Alert, AlertIcon, Box, Text,
 } from '@chakra-ui/react'
 
 interface IProps {

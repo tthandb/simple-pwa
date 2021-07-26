@@ -2,7 +2,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
@@ -29,7 +28,7 @@ const Breadcrumbs = () => {
     setPathArr(arr)
   }, [])
   return (
-    <Breadcrumb>
+    <Breadcrumb className="self-start" p="1.5rem">
       {pathArr.length && pathArr.map((val) => (
         <BreadcrumbItem key={uuid()}>
           <BreadcrumbLink as={Link} to={getPath(val)}>{val}</BreadcrumbLink>

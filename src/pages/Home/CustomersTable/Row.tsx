@@ -11,9 +11,17 @@ import {
   FiCheckCircle, FiXCircle, FiTrash2, FiEdit,
 } from 'react-icons/fi'
 import { IoMdFemale, IoMdMale } from 'react-icons/io'
+import { Customer } from '../../../utils/types'
+import { sendLog } from '../../../utils/logger'
 
-// const Row = (props: { data: Customer }) => {
-const Row = (props: any) => {
+interface IRow {
+  data: Customer,
+  handleEdit: (id: number | undefined) => void
+  onClickDeleteButton: (id: number | undefined) => void,
+  onOpen: () => void
+}
+
+const Row = (props: IRow) => {
   const {
     data, handleEdit, onClickDeleteButton, onOpen,
   } = props
@@ -62,6 +70,7 @@ const Row = (props: any) => {
               aria-label="Delete"
               icon={<Icon as={FiTrash2} />}
               onClick={() => {
+                sendLog('info', 'Click delete button').then()
                 onClickDeleteButton(data.id)
                 onOpen()
               }}

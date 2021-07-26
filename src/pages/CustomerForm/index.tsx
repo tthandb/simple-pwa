@@ -10,10 +10,9 @@ import {
   Stack,
   InputLeftElement,
   Box,
-  Link,
   FormControl,
   Radio, RadioGroup,
-  CircularProgress, useToast,
+  CircularProgress, useToast, HStack,
 } from '@chakra-ui/react'
 import { useHistory } from 'react-router-dom'
 import {
@@ -24,17 +23,16 @@ import { useMutation } from 'react-query'
 import { useRecoilState } from 'recoil'
 import { validateEmail, validateName } from '../../utils/validation'
 import { Customer } from '../../utils/types'
-import { postCustomer, updateCustomer } from '../../utils/api'
+import { postCustomer, updateCustomer } from '../../utils/apis/customers'
 import NotificationMessage from '../../components/NotificationMessage'
 import { formState } from '../../recoil/atoms'
 import Breadcrumbs from '../../components/Breadcrumbs'
+import { sendLog } from '../../utils/logger'
 
 const CustomerForm = () => {
   const [error, setError] = useState<string | null>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
   const [form, setForm] = useRecoilState(formState)
-
   const history = useHistory()
   const toast = useToast()
   const mutation = useMutation(
@@ -46,6 +44,7 @@ const CustomerForm = () => {
     },
     {
       onSuccess: (data, variables) => {
+        sendLog('info', `${form.isEdit ? 'Update' : 'Add new'} success`, JSON.stringify(data)).then()
         toast({
           title: `Customer is ${form.isEdit ? 'updated' : 'created'}.`,
           description: `We have ${form.isEdit ? 'updated' : 'created'} customer information for you.`,
@@ -56,7 +55,7 @@ const CustomerForm = () => {
         setError(null)
         history.push('/dashboard')
       },
-      onError: (err:any) => {
+      onError: (err: any) => {
         setError(err.response.data)
         setIsLoading(false)
       },
@@ -82,6 +81,10 @@ const CustomerForm = () => {
       mutation.mutate(form.data)
     }
   }
+
+  useEffect(() => {
+    sendLog('info', 'Customer form mount').then()
+  }, [])
 
   useEffect(() => () => {
     setForm({ ...form, ...{ isEdit: false } })
@@ -125,17 +128,17 @@ const CustomerForm = () => {
                     placeholder="Name"
                     defaultValue={form.isEdit ? form.data.name : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ name: e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ name: e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -151,17 +154,17 @@ const CustomerForm = () => {
                     placeholder="Email"
                     defaultValue={form.isEdit ? form.data.email : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ email: e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ email: e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -177,17 +180,17 @@ const CustomerForm = () => {
                     placeholder="Age"
                     defaultValue={form.isEdit ? form.data.age : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ age: +e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ age: +e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -203,17 +206,17 @@ const CustomerForm = () => {
                     placeholder="Phone"
                     defaultValue={form.isEdit ? form.data.phone : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ phone: e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ phone: e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -230,14 +233,14 @@ const CustomerForm = () => {
                   },
                 )}
               >
-                <Stack spacing={5} direction="row" justify="space-around">
+                <HStack spacing="1.25rem" justify="space-around">
                   <Radio colorScheme="cyan" size="lg" value="male">
                     Male
                   </Radio>
                   <Radio colorScheme="pink" size="lg" value="female">
                     Female
                   </Radio>
-                </Stack>
+                </HStack>
               </RadioGroup>
               <FormControl isRequired>
                 <InputGroup>
@@ -251,17 +254,17 @@ const CustomerForm = () => {
                     placeholder="Address"
                     defaultValue={form.isEdit ? form.data.address : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ address: e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ address: e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -277,17 +280,17 @@ const CustomerForm = () => {
                     placeholder="Company"
                     defaultValue={form.isEdit ? form.data.company : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ company: e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ company: e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -303,17 +306,17 @@ const CustomerForm = () => {
                     placeholder="Balance"
                     defaultValue={form.isEdit ? form.data.balance : ''}
                     onChange={
-                        (e: ChangeEvent<HTMLInputElement>) => setForm(
-                          {
-                            ...form,
-                            ...{
-                              data: {
-                                ...form.data, ...{ balance: e.currentTarget.value },
+                          (e: ChangeEvent<HTMLInputElement>) => setForm(
+                            {
+                              ...form,
+                              ...{
+                                data: {
+                                  ...form.data, ...{ balance: e.currentTarget.value },
+                                },
                               },
                             },
-                          },
-                        )
-                      }
+                          )
+                        }
                   />
                 </InputGroup>
               </FormControl>
@@ -333,18 +336,18 @@ const CustomerForm = () => {
                   )
                 }}
               >
-                <Stack spacing={5} direction="row" justify="space-around">
+                <HStack spacing="1.25rem" justify="space-around">
                   <Radio colorScheme="green" size="lg" value="active">
                     Active
                   </Radio>
                   <Radio colorScheme="red" size="lg" value="not active">
                     Not active
                   </Radio>
-                </Stack>
+                </HStack>
               </RadioGroup>
               {error && <NotificationMessage status="error" message={error} />}
               <Button
-                borderRadius={0}
+                borderRadius="1rem"
                 type="submit"
                 variant="solid"
                 colorScheme="teal"

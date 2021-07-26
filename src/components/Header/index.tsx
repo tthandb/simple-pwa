@@ -1,11 +1,10 @@
 import {
-  Button,
-  Flex, Heading, Stack,
+  Flex, Heading, HStack, Stack, Text, VStack,
 } from '@chakra-ui/react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { Link } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import { useEffect } from 'react'
 import jwtDecode, { JwtPayload } from 'jwt-decode'
-import MenuItem from './MenuItem'
 import UserMenu from './UserMenu'
 import userState from '../../recoil/atoms/user'
 
@@ -27,23 +26,28 @@ const Header = () => {
     <Flex
       as="nav"
       align="center"
-      justify="space-between"
+      justify="center"
       w="100%"
-      mb={8}
-      p={6}
+      p="1.5rem"
       bg="teal.500"
       color="white"
+      shadow="xl"
     >
-      <Heading>This is LOGO</Heading>
-      <Stack
-        spacing={8}
-        align="center"
-        justify="center"
-        direction="row"
-      >
-        <MenuItem to="/">Home</MenuItem>
-        <UserMenu name={user.email} />
-      </Stack>
+      <HStack w="container.xl" px="1rem" justify="space-between" alignItems="center">
+        <Link className="cursor-pointer" to="/home">
+          <Heading>This is LOGO</Heading>
+        </Link>
+        <Stack
+          spacing={8}
+          align="center"
+          justify="center"
+          direction="row"
+        >
+          {/* <MenuItem to="/">Home</MenuItem> */}
+          <Text>{user.email}</Text>
+          <UserMenu name={user.email} />
+        </Stack>
+      </HStack>
     </Flex>
   )
 }
