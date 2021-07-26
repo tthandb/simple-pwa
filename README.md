@@ -1,6 +1,6 @@
 ## Tech-stack 
 
-* [**React**](https://reactjs.org/) with **TypeScript**
+* [**Create React App**](https://create-react-app.dev/) with **TypeScript** and PWA template
 * [**Chakra**](https://chakra-ui.com/)
 * [**Recoil**](https://recoiljs.org/)
 * [**TailwindCSS**](https://tailwindcss.com/)
