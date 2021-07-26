@@ -4237,48 +4237,5 @@
       "address": "635 Luquer Street, Trona, Hawaii, 1929"
     }
   ],
-  "logger": [
-    {
-      "timestamp": "23:00:23, 26/7/2021",
-      "level": "info",
-      "title": "Get customers request from /customers",
-      "message": null,
-      "id": 1
-    },
-    {
-      "timestamp": "23:00:23, 26/7/2021",
-      "level": "info",
-      "title": "Home page mount",
-      "message": null,
-      "id": 2
-    },
-    {
-      "timestamp": "23:00:23, 26/7/2021",
-      "level": "info",
-      "title": "Pagination bar: 1,2,3,4,5,6,7,8,9",
-      "message": null,
-      "id": 3
-    },
-    {
-      "timestamp": "23:00:23, 26/7/2021",
-      "level": "info",
-      "title": "Customers list displayed on current page",
-      "message": "[{\"id\":0,\"isActive\":true,\"balance\":\"$3,373.73\",\"age\":35,\"name\":\"Riggs Armstrong\",\"gender\":\"male\",\"company\":\"ZOLARITY\",\"email\":\"riggsarmstrong@zolarity.com\",\"phone\":\"+1 (827) 560-2177\",\"address\":\"293 Glendale Court, Gracey, Hawaii, 1268\"},{\"id\":1,\"isActive\":true,\"balance\":\"$2,256.37\",\"age\":40,\"name\":\"Stacey Palmer\",\"gender\":\"female\",\"company\":\"ZANYMAX\",\"email\":\"staceypalmer@zanymax.com\",\"phone\":\"+1 (907) 402-2333\",\"address\":\"268 Nassau Avenue, Zeba, Maine, 1491\"},{\"id\":2,\"isActive\":true,\"balance\":\"$1,527.01\",\"age\":37,\"name\":\"Mcneil Marks\",\"gender\":\"male\",\"company\":\"ZILLAR\",\"email\":\"mcneilmarks@zillar.com\",\"phone\":\"+1 (814) 596-2658\",\"address\":\"438 Louisa Street, Waterford, Kentucky, 1306\"},{\"id\":3,\"isActive\":true,\"balance\":\"$1,525.64\",\"age\":22,\"name\":\"Tamika Cross\",\"gender\":\"female\",\"company\":\"DIGINETIC\",\"email\":\"tamikacross@diginetic.com\",\"phone\":\"+1 (800) 494-2526\",\"address\":\"827 Dobbin Street, Ona, Montana, 2043\"},{\"id\":4,\"isActive\":true,\"balance\":\"$2,086.23\",\"age\":32,\"name\":\"Cherry Schneider\",\"gender\":\"female\",\"company\":\"ASSISTIA\",\"email\":\"cherryschneider@assistia.com\",\"phone\":\"+1 (900) 426-3777\",\"address\":\"843 Jackson Street, Veguita, Palau, 2798\"},{\"id\":5,\"isActive\":true,\"balance\":\"$3,714.84\",\"age\":37,\"name\":\"Sharlene Case\",\"gender\":\"female\",\"company\":\"GONKLE\",\"email\":\"sharlenecase@gonkle.com\",\"phone\":\"+1 (969) 518-2760\",\"address\":\"425 Graham Avenue, Weedville, California, 6523\"},{\"id\":6,\"isActive\":true,\"balance\":\"$2,310.92\",\"age\":23,\"name\":\"Hobbs Dotson\",\"gender\":\"male\",\"company\":\"ZENTRY\",\"email\":\"hobbsdotson@zentry.com\",\"phone\":\"+1 (932) 574-3091\",\"address\":\"829 Norman Avenue, Southview, Pennsylvania, 6575\"},{\"id\":7,\"isActive\":true,\"balance\":\"$2,284.97\",\"age\":30,\"name\":\"Woods Nielsen\",\"gender\":\"male\",\"company\":\"KRAG\",\"email\":\"woodsnielsen@krag.com\",\"phone\":\"+1 (918) 526-3718\",\"address\":\"408 Dikeman Street, Stockwell, Minnesota, 4891\"},{\"id\":8,\"isActive\":true,\"balance\":\"$2,607.82\",\"age\":34,\"name\":\"Dianne Mcmillan\",\"gender\":\"female\",\"company\":\"SURELOGIC\",\"email\":\"diannemcmillan@surelogic.com\",\"phone\":\"+1 (914) 496-2440\",\"address\":\"130 Rock Street, Allendale, Arkansas, 9401\"},{\"id\":9,\"isActive\":true,\"balance\":\"$3,893.73\",\"age\":39,\"name\":\"Mercado Potts\",\"gender\":\"male\",\"company\":\"ZOINAGE\",\"email\":\"mercadopotts@zoinage.com\",\"phone\":\"+1 (930) 429-2798\",\"address\":\"663 Brooklyn Road, Joppa, Marshall Islands, 2915\"}]",
-      "id": 4
-    },
-    {
-      "timestamp": "23:00:25, 26/7/2021",
-      "level": "info",
-      "title": "Get customers request from /customers",
-      "message": null,
-      "id": 5
-    },
-    {
-      "timestamp": "23:01:06, 26/7/2021",
-      "level": "info",
-      "title": "Get customers request from /customers",
-      "message": null,
-      "id": 6
-    }
-  ]
+  "logger": []
 }
