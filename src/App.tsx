@@ -1,6 +1,6 @@
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Login from './pages/Login'
 import Registration from './pages/Registration'
 import Home from './pages/Home'

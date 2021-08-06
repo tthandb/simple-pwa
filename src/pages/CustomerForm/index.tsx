@@ -43,7 +43,7 @@ const CustomerForm = () => {
       return postCustomer(data)
     },
     {
-      onSuccess: (data, variables) => {
+      onSuccess: (data) => {
         sendLog('info', `${form.isEdit ? 'Update' : 'Add new'} success`, JSON.stringify(data)).then()
         toast({
           title: `Customer is ${form.isEdit ? 'updated' : 'created'}.`,

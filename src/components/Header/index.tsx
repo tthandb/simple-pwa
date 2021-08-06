@@ -1,5 +1,5 @@
 import {
-  Flex, Heading, HStack, Stack, Text, VStack,
+  Flex, Heading, HStack, Stack, Text,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'

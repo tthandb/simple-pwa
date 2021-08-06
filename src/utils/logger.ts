@@ -24,7 +24,7 @@ export const sendLog = async (level: 'info' | 'debug' | 'trace' | 'warn' | 'erro
   }
   logPlain(log)
   return postLog(log)
-    .then((r) => true)
+    .then(() => true)
     .catch((err) => console.log('error', err))
 }
 

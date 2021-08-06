@@ -5,7 +5,6 @@ import {
   IconButton,
   ButtonGroup,
   Center,
-
 } from '@chakra-ui/react'
 import {
   FiCheckCircle, FiXCircle, FiTrash2, FiEdit,

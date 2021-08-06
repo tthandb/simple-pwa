@@ -73,6 +73,7 @@ const Home = () => {
   const backUpCurrentPage = () => {
     sessionStorage.setItem('current_page', pagination.currentPage.toString())
   }
+
   useEffect(() => {
     sendLog('info', 'Home page mount').then()
     if (isSuccess && data) {

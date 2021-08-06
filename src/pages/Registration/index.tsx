@@ -96,7 +96,7 @@ const Registration = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    sendLog('info', 'Click button "Submit"').then((r) => true)
+    sendLog('info', 'Click button "Submit"').then(() => true)
     if (validateForm()) {
       setIsLoading(true)
       const user = {
@@ -112,7 +112,7 @@ const Registration = () => {
   }
 
   useEffect(() => {
-    sendLog('info', 'Registration page mount').then((r) => true)
+    sendLog('info', 'Registration page mount').then(() => true)
   }, [])
 
   return (

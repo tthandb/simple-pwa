@@ -1,5 +1,5 @@
 import {
-  ChangeEvent, SyntheticEvent, useEffect, useRef, useState,
+  ChangeEvent, SyntheticEvent, useEffect, useState,
 } from 'react'
 import {
   Flex,
@@ -16,13 +16,13 @@ import {
   FormControl,
   FormHelperText,
   InputRightElement,
-  CircularProgress, useToast, Text, Icon, Checkbox, HStack,
+  CircularProgress, useToast, Icon, Checkbox, HStack,
 } from '@chakra-ui/react'
 import {
   FaUserAlt, FaLock, FaEye, FaEyeSlash,
 } from 'react-icons/fa'
 import { Link as Link2, useHistory } from 'react-router-dom'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 import { useSetRecoilState } from 'recoil'
 import NotificationMessage from '../../components/NotificationMessage'
 import { postLogin, authorizationProvider } from '../../utils/apis'
@@ -81,23 +81,23 @@ const Login = () => {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault()
-    sendLog('info', 'Click button "Sign in"').then((r) => true)
+    sendLog('info', 'Click button "Sign in"').then(() => true)
     setIsLoading(true)
     mutation.mutate(user)
   }
 
   const handleShowClick = () => {
     if (!showPassword) {
-      sendLog('info', 'Click button "show password" to show password').then((r) => true)
+      sendLog('info', 'Click button "show password" to show password').then(() => true)
     } else {
-      sendLog('info', 'Click button "show password" to hide password').then((r) => true)
+      sendLog('info', 'Click button "show password" to hide password').then(() => true)
     }
 
     setShowPassword(!showPassword)
   }
 
   useEffect(() => {
-    sendLog('info', 'Login page mount').then((r) => true)
+    sendLog('info', 'Login page mount').then(() => true)
     setToken({
       accessToken: localStorage.getItem('access_token'),
       expiredTime: localStorage.getItem('last_login'),
@@ -224,7 +224,7 @@ const Login = () => {
           color="teal.500"
           to="/registration"
           onClick={() => sendLog('info', 'Click button "Sign up" when not have account')
-            .then((r) => true)}
+            .then(() => true)}
         >
           Sign Up
         </Link>
