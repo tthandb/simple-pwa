@@ -23,7 +23,7 @@ import { useMutation } from 'react-query'
 import { useRecoilState } from 'recoil'
 import { validateEmail, validateName } from '../../utils/validation'
 import { Customer } from '../../utils/types'
-import { postCustomer, updateCustomer } from '../../utils/apis/customers'
+import { postCustomer, updateCustomer } from '../../apis'
 import NotificationMessage from '../../components/NotificationMessage'
 import { formState } from '../../recoil/atoms'
 import Breadcrumbs from '../../components/Breadcrumbs'
@@ -53,7 +53,7 @@ const CustomerForm = () => {
           isClosable: true,
         })
         setError(null)
-        history.push('/dashboard')
+        history.push('/home')
       },
       onError: (err: any) => {
         setError(err.response.data)

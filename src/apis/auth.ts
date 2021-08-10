@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
-import { User, UserInformation } from '../types'
-import { sendLog } from '../logger'
+import { User, UserInformation } from '../utils/types'
+import { sendLog } from '../utils/logger'
 
 export const postLogin = (user: User) => {
   sendLog('info', 'Send login request to /login', JSON.stringify(user)).then(() => true)

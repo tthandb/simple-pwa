@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
-import { Customer } from '../types'
-import { sendLog } from '../logger'
+import { Customer } from '../utils/types'
+import { sendLog } from '../utils/logger'
 
 export const getCustomers = async () => {
   sendLog('info', 'Get customers request from /customers').then(() => true)

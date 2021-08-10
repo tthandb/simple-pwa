@@ -1,5 +1,5 @@
 import { Logger } from './types'
-import { postLog } from './apis'
+import { postLog } from '../apis'
 
 export const logPlain = (log: Logger) => {
   const first = `[${log.timestamp}] ${log.level.toUpperCase()}: ${log.title} `

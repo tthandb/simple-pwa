@@ -3,7 +3,7 @@ import { FunctionComponent, ReactNode, useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import { LOGIN_TIMEOUT } from '../../utils/constants'
 import { tokenState } from '../../recoil/atoms'
-import { authorizationProvider } from '../../utils/apis'
+import { authorizationProvider } from '../../apis'
 import { sendLog } from '../../utils/logger'
 
 interface IProps {

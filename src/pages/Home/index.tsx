@@ -10,7 +10,7 @@ import {
   Switch, useHistory,
 } from 'react-router-dom'
 import Header from '../../components/Header'
-import { getCustomers } from '../../utils/apis'
+import { getCustomers } from '../../apis'
 import CustomersTable from './CustomersTable'
 import NotificationMessage from '../../components/NotificationMessage'
 import Pagination from './Pagination'

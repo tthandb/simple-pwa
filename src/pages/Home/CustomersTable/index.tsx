@@ -19,7 +19,7 @@ import { useState, useRef } from 'react'
 import { useMutation } from 'react-query'
 import { Customer } from '../../../utils/types'
 import { formState } from '../../../recoil/atoms'
-import { deleteCustomer } from '../../../utils/apis'
+import { deleteCustomer } from '../../../apis'
 import Row from './Row'
 import { sendLog } from '../../../utils/logger'
 
